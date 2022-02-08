@@ -1,0 +1,9 @@
+derivative
+sympy==1.8
+scikit-learn
+scipy
+matplotlib
+numpy
+pandas
+pytorch
+torchdiffeq
