@@ -17,5 +17,7 @@ nohup bash real_data.sh &
 
 nohup bash fraction.sh &
 
+nohup bash vi_sensitivity,sh &
+
 nohup bash rebuttal.sh &
 

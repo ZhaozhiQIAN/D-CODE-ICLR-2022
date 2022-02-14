@@ -69,6 +69,14 @@ def run(ode_name, ode_param, x_id, freq, n_sample, noise_ratio, alg, seed, n_see
     for s in range(seed, seed+n_seed):
         print(' ')
         print('Running with seed {}'.format(s))
+        if x_id == 0:
+            path = path_base + 'grad_seed_{}.pkl'.format(s)
+        else:
+            path = path_base + 'grad_x_{}_seed_{}.pkl'.format(x_id, s)
+
+        if os.path.isfile(path):
+            print('Skipping seed {}'.format(s))
+            continue
         start = time.time()
         f_hat, est_gp = run_gp(X_train, y_train, ode, x_id, s)
         print(f_hat)
@@ -79,10 +87,6 @@ def run(ode_name, ode_param, x_id, freq, n_sample, noise_ratio, alg, seed, n_see
             correct_list = [sympy.simplify(f_hat - f) == 0 for f in f_true]
             correct = max(correct_list) == 1
 
-        if x_id == 0:
-            path = path_base + 'grad_seed_{}.pkl'.format(s)
-        else:
-            path = path_base + 'grad_x_{}_seed_{}.pkl'.format(x_id, s)
         end = time.time()
 
         with open(path, 'wb') as f:
