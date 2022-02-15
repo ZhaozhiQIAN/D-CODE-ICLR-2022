@@ -10,9 +10,6 @@ import pickle
 
 import sys
 import os
-directory_path = os.getcwd()
-sys.path.append(directory_path + '/gplearn/')
-
 
 def run(ode_name, ode_param, x_id, freq, n_sample, noise_ratio, alg, seed, n_seed, eval_state):
     np.random.seed(999)

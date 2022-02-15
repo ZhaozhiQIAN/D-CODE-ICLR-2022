@@ -8,8 +8,6 @@ import pickle
 
 import sys
 import os
-directory_path = os.getcwd()
-sys.path.append(directory_path + '/gplearn/')
 from gplearn.genetic import SymbolicRegressor
 
 

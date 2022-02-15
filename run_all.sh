@@ -1,23 +1,41 @@
-nohup bash gompertz_noise.sh &
-nohup bash gompertz_sample.sh &
-nohup bash gompertz_freq.sh &
+#!/bin/bash
 
-nohup bash logistic_noise.sh &
-nohup bash logistic_sample.sh &
-nohup bash logistic_freq.sh &
+rm -rf results &> /dev/null
+mkdir -p results &> /dev/null
 
-nohup bash selkov_1.sh &
-nohup bash selkov_2.sh &
+parallel=0
+for arg in "$@"
+do
+    if [ "${arg}" == "parallel" ]
+    then
+        parallel=1
+    fi
+done
 
-nohup bash lorenz_1.sh &
-nohup bash lorenz_2.sh &
-nohup bash lorenz_3.sh &
-
-nohup bash real_data.sh &
-
-nohup bash fraction.sh &
-
-nohup bash vi_sensitivity,sh &
-
-nohup bash rebuttal.sh &
-
+for experiment in \
+    gompertz_noise.sh \
+    gompertz_sample.sh \
+    gompertz_freq.sh \
+    logistic_noise.sh \
+    logistic_sample.sh \
+    logistic_freq.sh \
+    selkov_1.sh \
+    selkov_2.sh \
+    lorenz_1.sh \
+    lorenz_2.sh \
+    lorenz_3.sh \
+    real_data.sh \
+    fraction.sh \
+    vi_sensitivity.sh \
+    rebuttal.sh
+do
+    echo -n "Running ${experiment}"
+    if [ ${parallel} -eq 1 ]
+    then
+        echo " in parallel"
+        nohup bash ${experiment} &
+    else
+        echo " sequentially"
+        bash ${experiment}
+    fi
+done
