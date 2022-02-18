@@ -1,6 +1,5 @@
 #!/bin/bash
 
-rm -rf results &> /dev/null
 mkdir -p results &> /dev/null
 
 parallel=0
