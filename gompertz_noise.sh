@@ -1,10 +1,10 @@
 
 ################################  Gompertz ODE Noise ################################
 
-mkdir results/GompertzODE
-mkdir results_vi/GompertzODE
-mkdir results_spline/GompertzODE
-mkdir results_gp/GompertzODE
+mkdir -p results/GompertzODE
+mkdir -p results_vi/GompertzODE
+mkdir -p results_spline/GompertzODE
+mkdir -p results_gp/GompertzODE
 
 
 ode=GompertzODE
@@ -43,8 +43,8 @@ rm results/GompertzODE-noise.txt
 for noise in "${noise_arr[@]}"
 do
     python -u evaluation.py --ode_name=${ode} --ode_param=${ode_param} --noise_sigma=${noise} --n_sample=${sample} --freq=${freq} --alg=vi >> results/GompertzODE-noise.txt
-    python -u evaluation.py --ode_name=${ode} --ode_param=${ode_param} --noise_sigma=${noise} --n_sample=${sample} --freq=${freq} --alg=diff >> results/GompertzODE-noise.txt 
-    python -u evaluation.py --ode_name=${ode} --ode_param=${ode_param} --noise_sigma=${noise} --n_sample=${sample} --freq=${freq} --alg=spline >> results/GompertzODE-noise.txt 
+    python -u evaluation.py --ode_name=${ode} --ode_param=${ode_param} --noise_sigma=${noise} --n_sample=${sample} --freq=${freq} --alg=diff >> results/GompertzODE-noise.txt
+    python -u evaluation.py --ode_name=${ode} --ode_param=${ode_param} --noise_sigma=${noise} --n_sample=${sample} --freq=${freq} --alg=spline >> results/GompertzODE-noise.txt
     python -u evaluation.py --ode_name=${ode} --ode_param=${ode_param} --noise_sigma=${noise} --n_sample=${sample} --freq=${freq} --alg=gp >> results/GompertzODE-noise.txt
     sleep 1
 done

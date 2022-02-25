@@ -11,9 +11,6 @@ from gp_utils import *
 
 import sys
 import os
-directory_path = os.getcwd()
-sys.path.append(directory_path + '/gplearn/')
-
 
 def gp_post(f_star, ode, tol=None, expand=False):
     VarDict = ode.get_var_dict()

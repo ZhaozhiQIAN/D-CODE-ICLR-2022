@@ -6,11 +6,9 @@ import os
 import re
 from genetic import SymbolicODE
 import equations
-directory_path = os.getcwd()
 from utils import generator
 from config import get_config, get_config_real
 
-sys.path.append(directory_path + '/gplearn/')
 from gplearn.genetic import SymbolicRegressor
 from gplearn.functions import make_function
 
